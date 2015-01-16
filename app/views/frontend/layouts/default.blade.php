@@ -113,29 +113,34 @@
       </div>
     </div>
 
-<!-- Begin page content -->
+    <!-- Begin page content -->
 
-<div class="container">
+    <div class="container">
 
-    <!-- Notifications -->
-    @include('frontend/notifications')
+        <!-- Notifications -->
+        @include('frontend/notifications')
 
-    <!-- Content -->
-    @yield('content')
+        <!-- Content -->
+        @yield('content')
 
-</div>
+    </div>
 
     <div id="footer">
       <div class="container">
         <p class="text-muted">Place sticky footer content here.</p>
       </div>
     </div>
+    <!-- Body bottom
+    ================================================== -->
+    @section('body_bottom')
+    @show
 
-        <!-- Javascripts
-        ================================================== -->
-        <script src="{{ asset('assets/js/jquery.1.10.2.min.js') }}"></script>
-        <script src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
-        @section('body_bottom')
-        @show
+    <!-- Javascripts
+    ================================================== -->
+    <script src="{{ asset('assets/js/jquery.1.10.2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
+    @section('javascript_bottom')
+    @show
+
     </body>
 </html>

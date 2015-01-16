@@ -61,7 +61,14 @@ User Management ::
                 <a href="{{ route('restore/user', $user->id) }}"><span class="glyphicon glyphicon-ok"></span></a>
                 @else
                 @if (Sentry::getId() !== $user->id)
-                <a href="{{ route('confirm-delete/user', $user->id) }}" data-toggle="modal" data-target="#delete_confirm"><span class="glyphicon glyphicon-trash"></span></a>
+                <a
+                    href="#dataConfirmModal"
+                    data-toggle="modal"
+                    data-target="#dataConfirmModal"
+                    data-title="@lang('admin/users/modal.title')
+                    {{{ $user->fullName() }}}"
+                    data-body="@lang('admin/users/modal.body')"
+                    data-href="{{ route('delete/user', $user->id) }}"><span class="glyphicon glyphicon-trash"></span></a>
                 @else
                 <span class="glyphicon glyphicon-trash text-muted"></span>
                 @endif
@@ -78,15 +85,4 @@ User Management ::
 {{ $users->links() }}
 </div>
 @endif
-@stop
-
-{{-- Body Bottom confirm modal --}}
-@section('body_bottom')
-<div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    </div>
-  </div>
-</div>
-<script>$(function () {$('body').on('hidden.bs.modal', '.modal', function () {$(this).removeData('bs.modal');});});</script>
 @stop

@@ -38,7 +38,10 @@ class User extends SentryUserModel
 
     public function accountStatus()
     {
-        $throttle = Sentry::findThrottlerByUserId($this->id);
+        if(is_null($this->deleted_at))
+            $throttle = Sentry::findThrottlerByUserId($this->id);
+        else
+            return;
 
         if ($throttle->isBanned()) {
             return 'banned';

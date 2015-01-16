@@ -37,22 +37,18 @@
             <td><a href="{{ $post->url() }}">{{ $post->title }}</a></td>
             <td>{{{ $post->comments()->count() }}}</td>
             <td>{{{ $post->created_at->diffForHumans() }}}</td>
-            <td><a href="{{ route('confirm-delete/post', $post->id) }}" data-toggle="modal" data-target="#delete_confirm"><span class="glyphicon glyphicon-trash"></span></a></td>
+            <td><a
+                    href="#dataConfirmModal"
+                    data-toggle="modal"
+                    data-target="#dataConfirmModal"
+                    data-title="@lang('admin/posts/modal.title')
+                    {{{ $post->title }}}"
+                    data-body="@lang('admin/posts/modal.body')"
+                    data-href="{{ route('delete/post', $post->id) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>
         @endforeach
     </tbody>
 </table>
 
 {{ $posts->links() }}
-@stop
-
-{{-- Body Bottom confirm modal --}}
-@section('body_bottom')
-<div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    </div>
-  </div>
-</div>
-<script>$(function () {$('body').on('hidden.bs.modal', '.modal', function () {$(this).removeData('bs.modal');});});</script>
 @stop
